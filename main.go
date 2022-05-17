@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	workerLimit  = 5
+	workerLimit  = 1
 	intendedWord = "Go"
 	golangURL    = "https://golang.org"
 	goWiki       = "https://en.wikipedia.org/wiki/Go_(programming_language)"
@@ -46,13 +46,15 @@ func main() {
 	log.Printf("Total: %d", sum)
 }
 
-func wordCount(text, intendedWord string) int {
+func wordCount(text, intendedWord string) (counter int) {
 	words := strings.Fields(text)
-	wordMap := make(map[string]int)
 	for _, word := range words {
-		wordMap[word] += 1
+		if word == intendedWord {
+			counter += 1
+		}
+
 	}
-	return wordMap[intendedWord]
+	return counter
 }
 
 func getData(url string) (string, error) {
