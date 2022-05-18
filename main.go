@@ -10,10 +10,13 @@ import (
 )
 
 const (
-	workerLimit  = 1
+	workerLimit  = 5
 	intendedWord = "Go"
 	golangURL    = "https://golang.org"
 	goWiki       = "https://en.wikipedia.org/wiki/Go_(programming_language)"
+	githubGo     = "https://github.com/golang/go"
+	habrGo       = "https://habr.com/ru/hub/go/"
+	freeCodeCamp = "https://www.freecodecamp.org/news/what-is-go-programming-language/"
 )
 
 type site struct {
@@ -27,7 +30,7 @@ type matches struct {
 func main() {
 	jobs := make(chan site, workerLimit)
 	results := make(chan matches, workerLimit)
-	urlList := []string{goWiki, golangURL, goWiki, golangURL, goWiki, golangURL}
+	urlList := []string{goWiki, golangURL, githubGo, habrGo, freeCodeCamp, githubGo}
 	sum := 0
 
 	for w := 1; w <= workerLimit; w++ {
